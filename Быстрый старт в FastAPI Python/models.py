@@ -5,3 +5,6 @@ class User(BaseModel):
     name: str
     id: int
 
+class User2(BaseModel):
+    name: str
+    age: int
