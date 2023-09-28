@@ -26,13 +26,13 @@ def root():
 def func(num1: int, num2: int):
     return {"result": num1+num2}
 
-
-class MyUser(User):
-    name: "John Doe"
-    id: 1
+#
+# class MyUser(User):
+#     name: "John Doe"
+#     id: 1
 
 
 @app.get("/users")
-def show(myUser: User):
-    return myUser
+def show():
+    return User(id=1, name="John Doe")
 
