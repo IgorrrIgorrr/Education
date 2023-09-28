@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from models import User, User2
+from models import User, User2, Feedback
 
 app = FastAPI()
 
@@ -41,3 +41,26 @@ def adult(user: User2):
     else:
         user.is_adult = False
     return user
+
+
+fake_users = {
+    1: {"username": "john_doe", "email": "john@example.com"},
+    2: {"username": "jane_smith", "email": "jane@example.com"},
+}
+
+
+@app.get("/users/{user_id}")
+def read_user(user_id: int):
+    if user_id in fake_users:
+        return fake_users[user_id]
+    return {"error": "User not found"}
+
+feds =[]
+
+
+@app.post("/feedback")
+def feeds(fed: Feedback):
+    feds.append(fed.message)
+    print(feds)
+    return {"response": f"Feedback received. Thank you, {fed.name}!",
+            "feds": f"{feds}"}
