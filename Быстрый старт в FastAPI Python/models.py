@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, Field
 
 
 class User(BaseModel):
@@ -13,3 +13,9 @@ class User2(BaseModel):
 class Feedback(BaseModel):
     name: str
     message: str
+
+class UserCreate(BaseModel):
+    name: str
+    email: EmailStr
+    age: int = Field(gt=0)
+    is_subscribed: bool = None

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from models import User, User2, Feedback
+from models import User, User2, Feedback, UserCreate
 
 app = FastAPI()
 
@@ -64,3 +64,8 @@ def feeds(fed: Feedback):
     print(feds)
     return {"response": f"Feedback received. Thank you, {fed.name}!",
             "feds": f"{feds}"}
+
+
+@app.post("/create_user", response_model = UserCreate)
+def create(user: UserCreate):
+    return user
