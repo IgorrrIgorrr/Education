@@ -25,6 +25,8 @@ def fake_hashed_password(password: str):
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
+
+
 class User(BaseModel):
     username: str
     email: Union[str, None] = None
