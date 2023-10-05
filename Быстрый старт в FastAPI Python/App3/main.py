@@ -56,6 +56,5 @@ def get_user(session_token=Cookie(), username: str = username_form):
         raise HTTPException(status_code=401, detail={"message": "Unauthorized"})
     else:
         user = fake_bd[username]
-        print(type(session_token))
         return User(**user), fake_bd[username]["session_token"], session_token
 
