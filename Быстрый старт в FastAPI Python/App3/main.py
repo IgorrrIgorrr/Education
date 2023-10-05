@@ -54,7 +54,6 @@ def login(unic: Annotated[str, Depends(gener_value)], response: Response, userna
 def get_user(session_token=Cookie(), username: str = username_form):
     if not fake_bd[username]["session_token"] == session_token:
         raise HTTPException(status_code=401, detail={"message": "Unauthorized"})
-
     else:
         user = fake_bd[username]
         return User(**user), fake_bd[username]["session_token"], session_token
